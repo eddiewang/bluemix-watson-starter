@@ -3,7 +3,7 @@ applications:
   memory: 128M
   instances: 1
   domain: mybluemix.net
-  name: #name of your service here
-  host: #your bluemix.net host name here
+  name: KeurigAppEddie
+  host: KeurigAppEddie
   disk_quota: 1024M
   buildpack: python_buildpack

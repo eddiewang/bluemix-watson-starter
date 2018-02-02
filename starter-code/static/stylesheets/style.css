@@ -1,98 +1,144 @@
+#results {
+  padding-bottom: 50px;
+}
+#result_text p {
+  font-size: 22px;
+  font-weight: 300;
+  text-align: center;
+}
+span.confidence {
+  background: #ddd;
+  border: 1px solid #333;
+  padding: 10px;
+  font-weight: bold;
+  color: #0087ff;
+}
+span.class_name {
+  border: 1px solid #333;
+  padding: 10px;
+  font-weight: bold;
+  color: #ff00f5;
+  background: #ddd;
+}
+.default-comment {
+  width: 100%;
+  min-height: 50px;
+  background: #fefefe;
+  border: 1px solid #333;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.default-comment:hover {
+  background: #efefef;
+}
+
 /*
- * Copyright 2015 IBM Corp. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the “License”);
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an “AS IS” BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-/* style.css
- * This file provides css styles.
- */
-
-body,html {
-	background-color: #3b4b54; width : 100%;
-	height: 100%;
-	margin: 0 auto;
-	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-	color: #ffffff;
+* CSS Spinner */
+#loader {
+  text-align: center;
+  padding: 50px;
+  display: none;
 }
 
-a {
-	text-decoration: none;
-	color: #00aed1;
+.spinner {
+  -webkit-animation: rotator 1.4s linear infinite;
+  animation: rotator 1.4s linear infinite;
 }
 
-a:hover {
-	text-decoration: underline;
+@-webkit-keyframes rotator {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(270deg);
+    transform: rotate(270deg);
+  }
 }
 
-.newappIcon {
-	padding-top: 10%;
-	display: block;
-	margin: 0 auto;
-	padding-bottom: 2em;
-	max-width:200px;
+@keyframes rotator {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(270deg);
+    transform: rotate(270deg);
+  }
+}
+.path {
+  stroke-dasharray: 187;
+  stroke-dashoffset: 0;
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  -webkit-animation: dash 1.4s ease-in-out infinite,
+    colors 5.6s ease-in-out infinite;
+  animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
 }
 
-h1 {
-	font-weight: bold;
-	font-size: 2em;
+@-webkit-keyframes colors {
+  0% {
+    stroke: #4285f4;
+  }
+  25% {
+    stroke: #de3e35;
+  }
+  50% {
+    stroke: #f7c223;
+  }
+  75% {
+    stroke: #1b9a59;
+  }
+  100% {
+    stroke: #4285f4;
+  }
 }
 
-.leftHalf {
-	float: left;
-	background-color: #26343f;
-	width: 45%;
-	height: 100%;
+@keyframes colors {
+  0% {
+    stroke: #4285f4;
+  }
+  25% {
+    stroke: #de3e35;
+  }
+  50% {
+    stroke: #f7c223;
+  }
+  75% {
+    stroke: #1b9a59;
+  }
+  100% {
+    stroke: #4285f4;
+  }
 }
-
-.rightHalf {
-	float: right;
-	width: 55%;
-	background-color: #313f4a;
-	height: 100%;
-	overflow:auto;
+@-webkit-keyframes dash {
+  0% {
+    stroke-dashoffset: 187;
+  }
+  50% {
+    stroke-dashoffset: 46.75;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: 187;
+    -webkit-transform: rotate(450deg);
+    transform: rotate(450deg);
+  }
 }
-
-.blue {
-	color: #00aed1;
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 187;
+  }
+  50% {
+    stroke-dashoffset: 46.75;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: 187;
+    -webkit-transform: rotate(450deg);
+    transform: rotate(450deg);
+  }
 }
-
-
-table {
-	table-layout: fixed;
-	width: 800px;
-	margin: 0 auto;
-	word-wrap: break-word;
-	padding-top:10%;
-}
-
-th {
-	border-bottom: 1px solid #000;
-}
-
-th, td {
-	text-align: left;
-	padding: 2px 20px;
-}
-
-.env-var {
-	text-align: right;
-	border-right: 1px solid #000;
-	width: 30%;
-}
-
-pre {
-	padding: 0;
-	margin: 0;
-}
-

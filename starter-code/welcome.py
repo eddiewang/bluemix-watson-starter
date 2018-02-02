@@ -1,45 +1,39 @@
-# Copyright 2015 IBM Corp. All Rights Reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-# https://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 import os
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
+from watson_developer_cloud import NaturalLanguageClassifierV1
+
+natural_language_classifier = NaturalLanguageClassifierV1(
+    username='c78225be-0efd-4cc3-9d6f-be656a3a58a1', password='xnuKYgqo6oZn')
+
+classifier_id = '0015b6x265-nlc-37174'
+comment_text = 'I love coffee'
+analysis_results = natural_language_classifier.classify(
+    classifier_id, comment_text)
+
+if "classes" in analysis_results.keys():
+    for predicted_class in analysis_results['classes']:
+        print(predicted_class['class_name'],
+              " - ", predicted_class['confidence'])
 
 app = Flask(__name__)
+
 
 @app.route('/')
 def Welcome():
     return app.send_static_file('index.html')
 
-@app.route('/myapp')
-def WelcomeToMyapp():
-    return 'Welcome again to my app running on Bluemix!'
 
-@app.route('/api/people')
-def GetPeople():
-    list = [
-        {'name': 'John', 'age': 28},
-        {'name': 'Bill', 'val': 26}
-    ]
-    return jsonify(results=list)
+@app.route('/analyze', methods=['GET', 'POST'])
+def Analyze():
+    comment_text = request.form['text']
+    classes = {}
+    if comment_text != "":
+        classes = natural_language_classifier.classify(
+            classifier_id, comment_text)
 
-@app.route('/api/people/<name>')
-def SayHello(name):
-    message = {
-        'message': 'Hello ' + name
-    }
-    return jsonify(results=message)
+    return jsonify(classes)
+
 
 port = os.getenv('PORT', '5000')
 if __name__ == "__main__":
-	app.run(host='0.0.0.0', port=int(port))
+    app.run(host='0.0.0.0', port=int(port), debug=True)

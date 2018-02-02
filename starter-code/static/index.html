@@ -1,24 +1,71 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <title>Python Flask Starter Application</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="static/stylesheets/style.css">
-  </head>
+<head>
+  <title>COMM190 Classification Demo</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="static/stylesheets/style.css">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+</head>
 
-  <body>
-    <table>
-      <tr>
-        <td style= "width:30%;">
-          <img class = "newappIcon" src="static/images/newapp-icon.png">
-        <td>
-            <h1>Hi there!</h1>
-          <p>Thanks for creating a
-            <span class = "blue">Python <a href = "http://flask.pocoo.org/">Flask</a> Starter Application</span>.
-    </table>
-  </body>
+<body>
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Watson Natural Language Classifier</h1>
+      <p>Demo for COMM190 that uses the NLC service to analyze and categorize customer reviews from Amazon.</p>
+    </div>
+  </div>
+  <div class="container">
+    <!-- Main Content Container -->
+    <div class="row">
+      <!-- Using BS Grid System -->
+      <div class="col-md-8 ">
+        <!-- Display welcome Form to the user -->
+        <div class="form-group">
+          <label for="comment_query">Comment to Analyze:</label>
+          <textarea class="form-control" rows="10" cols="40" id="comment_query"></textarea>
+        </div>
+        <button id="analyze_text" class="btn btn-block btn-primary">Analyze!</button>
+      </div>
+      <div class="col-md-4">
+        <h4>Instructions</h4>
+        <p>
+          This application uses the NLC service to categorize customer reviews as either: (1) Overjoyed, (2) Satisfied, (3) Ambivalent,
+          (4) Product Complaint, (5) Process Complaint, or (6) Gibberish.
+        </p>
+        <p>
+          Enter in a comment that would be representative for a customer review, or select a random review, and press analyze.
+        </p>
+        <p>
+          <a href="#" class="btn btn-success btn-block random-comment">Random Review</a>
+        </p>
+      </div>
+      <!-- End of welcome message + submission form -->
+    </div>
+    <hr>
+    <div id="loader" class='container'>
+      <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+        <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+      </svg>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <div id="result_text"></div>
+      </div>
+      <div class="col-md-4">
+        <!-- List of the Resulting Class Predictions -->
+        <ul id="results" class='list-group'></ul>
+      </div>
+    </div>
+
+    <!-- End of Main Content Container -->
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+  <script src="static/js/main.js"></script>
+</body>
 
 </html>
