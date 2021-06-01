@@ -84,7 +84,7 @@ seaborn==0.8.1
 singledispatch==3.4.0.3
 six==1.11.0
 tornado==4.5.2
-urllib3==1.22
+urllib3==1.26.5
 vboxapi==1.0
 watson-developer-cloud==1.0.2
 Werkzeug==0.14.1
